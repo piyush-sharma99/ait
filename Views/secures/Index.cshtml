@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Project.Models.secure>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Security Tips</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.secID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.secID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.secID })
+        </td>
+    </tr>
+}
+
+</table>

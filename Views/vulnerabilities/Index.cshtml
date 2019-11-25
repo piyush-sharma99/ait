@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Project.Models.vulnerability>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Vulnerability</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           @Html.DisplayNameFor(model => model.vulID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td onmouseover="onIdMouseOver(@item.vulID)">
+            @Html.DisplayFor(modelItem => item.vulID)
+        </td>
+        <td>
+        
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.vulID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.vulID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.vulID })
+        </td>
+    </tr>
+}
+
+</table>
+
+@section Scripts{
+
+    <script type="text/javascript">
+        function onIdMouseOver(vulID) {
+            $.ajax({
+                url: "/api/vulnerabilitiesAPI",
+                data: {
+                    vulID: vulID
+                },
+                success: function (result) {
+                    console.log(result);
+                    alert(JSON.stringify(result));
+                }
+
+            });
+
+        }
+    </script>
+    
+    
+    
+    }
