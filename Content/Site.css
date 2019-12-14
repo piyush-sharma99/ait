@@ -1,7 +1,38 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family:
+    color:black;
 }
+
+#img1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left:-100px;
+}
+
+.jumbotron {
+    background-color: #F7E9FC;
+    color: black;
+}
+
+.btn {
+    background-color: #3d0162;
+    color: white;
+}
+
+.navbar {
+    background-color: #3d0162;
+    text-decoration-color: white;
+}
+.navbar-inverse .navbar-brand {
+    color:white;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+   
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -22,3 +53,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
+
+
+

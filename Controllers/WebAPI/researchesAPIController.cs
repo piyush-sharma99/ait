@@ -35,9 +35,9 @@ namespace Project.Controllers.WebAPI
 
         // GET: api/researchesAPI/5
         [ResponseType(typeof(research))]
-        public async Task<IHttpActionResult> GetResearch(int reID)
+        public async Task<IHttpActionResult> GetResearch(int id)
         {
-            research re = await db.researches.FindAsync(reID);
+            research re = await db.researches.FindAsync(id);
 
             if (re == null)
             {

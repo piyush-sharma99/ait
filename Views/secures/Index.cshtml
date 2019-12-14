@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.secID)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -26,24 +29,54 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Topic)
-        </td>
-       
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.secID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.secID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.secID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td onmouseover="onIdMouseOver(@item.secID)">
+                @Html.DisplayFor(modelItem => item.secID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.secID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.secID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.secID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+
+@section Scripts{
+
+
+    <script type="text/javascript">
+        function onIdMouseOver(secID) {
+            $.ajax({
+                url: "/api/securesAPI",
+                data: {
+                    secID: secID
+                },
+                success: function (result) {
+                    console.log(result);
+                    alert(JSON.stringify(result));
+                }
+
+            });
+
+        }
+    </script>
+
+
+
+}

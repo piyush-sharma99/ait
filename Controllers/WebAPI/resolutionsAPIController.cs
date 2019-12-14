@@ -35,9 +35,9 @@ namespace Project.Controllers.WebAPI
 
         // GET: api/resolutionsAPI/5
         [ResponseType(typeof(resolution))]
-        public async Task<IHttpActionResult> GetResolution(int resID)
+        public async Task<IHttpActionResult> GetResolution(int id)
         {
-            resolution r = await db.resolutions.FindAsync(resID);
+            resolution r = await db.resolutions.FindAsync(id);
 
             if (r == null)
             {

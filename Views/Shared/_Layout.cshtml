@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -17,16 +18,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("InfoHack", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+             
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><img id="img1"  height="50px" width="50px" src="~/Content/images/logo.jpg" alt="Sample Image"  /></li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Vulnerability","Index", "vulnerabilities")</li>
+                    <li>@Html.ActionLink("Vulnerability", "Index", "vulnerabilities")</li>
                     <li>@Html.ActionLink("Security", "Index", "secures")</li>
                     <li>@Html.ActionLink("Research", "Index", "researches")</li>
                     <li>@Html.ActionLink("Problem", "Index", "resolutions")</li>
+                    <li>@Html.ActionLink("Search", "Index", "vulnerabilities/Search")</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -37,7 +40,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - InfoHack</p>
         </footer>
     </div>
 

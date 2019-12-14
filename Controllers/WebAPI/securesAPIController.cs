@@ -35,9 +35,9 @@ namespace Project.Controllers.WebAPI
 
         // GET: api/securesAPI/5
         [ResponseType(typeof(secure))]
-        public async Task<IHttpActionResult> GetSecure(int secID)
+        public async Task<IHttpActionResult> GetSecure(int id)
         {
-            secure s = await db.secures.FindAsync(secID);
+            secure s = await db.secures.FindAsync(id);
 
             if (s == null)
             {

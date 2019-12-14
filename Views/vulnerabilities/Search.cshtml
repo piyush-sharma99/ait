@@ -1,20 +1,23 @@
 ﻿
+
 @{
     ViewBag.Title = "Search";
 }
 
-<h2>Search</h2>
 
-<div class="col-md-10">
-    <input type ="text" id="vulID"  />
-    <input type="submit" name="SearchButton" id="SearchButton" value="Search" />
-</div>
-<br/>
+    <h2>Search records</h2>
+    <div class="col-md-10">
+      <p>Type in an ID and all records with the stated ID will display</p>
+        <input type="text" id="vulID" />
+        <input type="submit" name="SearchButton" id="SearchButton" value="Search" />
+    </div>
+<br />
 <div id="divProcessing">
     <p>Processing, please wait . . . <img src="../../Content/ajax-loader.gif" height="50"></p>
 </div>
 
 <br/>
+<br />
 <div id="divResult">
 </div>
 
@@ -27,7 +30,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
     $(document).ready(function () {
         $("#divProcessing").hide();
@@ -41,25 +44,77 @@
         $("#divResult").empty();
         $("#divProcessing").show();
 
-        var VULID = $("#vulID").val();
-        var url = "../api/vulnerabilitiesAPI/" + VULID;
+        var vulID = $("#vulID").val();
+        var url = "../api/vulnerabilitiesAPI/" + vulID;
+        var url2 = "../api/researchesAPI/" + vulID;
+        var url3 = "../api/resolutionsAPI/" + vulID;
+        var url4 = "../api/securesAPI/" + vulID;
         $.ajax({
             url: url,
             type:"GET",
             dataType:"json",
             success: function (resp) {
                 $("#divProcessing").hide();
-                $("<h3>Results</h3>").appendTo("#divResult");
+                $("<h3>Vulnerability Record</h3>").appendTo("#divResult");
+                $("#divResult").append("<p>Here are the Results:</p>");
                 $("#divResult").append("<p>Name: " + resp.Name + "<br/>Date: " + resp.Date + "<br/>Topic: " + resp.Topic + "<br/>");
-                $("#divResult").append("Details: <br/>" + resp.Details + "<br/>")
-                $("#divResult").append("</p>");
+                $("#divResult").append("Details: <br/>" + resp.Details + "<br/>");
+                $("#divResult").append("</p><br/>");
             }
         })
 
+        
+            $.ajax({
+                url: url2,
+                type: "GET",
+                dataType: "json",
+                success: function (resp) {
+                    $("#divProcessing").hide();
+                    $("<h3>Research Record</h3>").appendTo("#divResult");
+                    $("#divResult").append("<p>Here are the Results:</p>");
+                    $("#divResult").append("<p>Name: " + resp.Name + "<br/>Date: " + resp.Date + "<br/>Topic: " + resp.Topic + "<br/>");
+                    $("#divResult").append("Details: <br/>" + resp.Details + "<br/>");
+                    $("#divResult").append("</p><br/>");
+                }
+            })
+        
+
+           $.ajax({
+            url: url3,
+            type:"GET",
+            dataType:"json",
+            success: function (resp) {
+                $("#divProcessing").hide();
+                $("<h3>Resolution Record</h3>").appendTo("#divResult");
+                $("#divResult").append("<p>Here are the Results:</p>");
+                $("#divResult").append("<p>Name: " + resp.Name + "<br/>Date: " + resp.Date + "<br/>Topic: " + resp.Topic + "<br/>");
+                $("#divResult").append("Details: <br/>" + resp.Details + "<br/>");
+                $("#divResult").append("</p><br/>");
+            }
+           })
+
+
+         $.ajax({
+            url: url4,
+            type:"GET",
+            dataType:"json",
+            success: function (resp) {
+                $("#divProcessing").hide();
+                $("<h3>Security Records</h3>").appendTo("#divResult");
+                $("#divResult").append("<p>Here are the Results:</p>");
+                $("#divResult").append("<p>Name: " + resp.Name + "<br/>Date: " + resp.Date + "<br/>Topic: " + resp.Topic + "<br/>");
+                $("#divResult").append("Details: <br/>" + resp.Details + "<br/>");
+                $("#divResult").append("</p>");
+            }
+           })
+
+
+
+
     }
 
 
-    </script>    
-    
-    }
+    </script>
+
+}
 

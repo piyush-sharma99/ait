@@ -18,10 +18,10 @@ namespace Project.Controllers.WebAPI
         private projectContext db = new projectContext();
 
         // GET: api/vulnerabilitiesAPI
-        public IQueryable<vulnerabilityDTO> Getvulnerabilities()
+        public IQueryable<vulnerabilityDTO> GetVulnerabilities()
         {
 
-            var vul = from b in db.vulnerabilities
+            var vulnerability = from b in db.vulnerabilities
                         select new vulnerabilityDTO()
                         {
                             vulID = b.vulID,
@@ -31,14 +31,14 @@ namespace Project.Controllers.WebAPI
                             Details = b.Details
                            
                         };
-            return vul;
+            return vulnerability;
         }
 
         // GET: api/vulnerabilitiesAPI/5
         [ResponseType(typeof(vulnerabilityDTO))]
-        public async Task<IHttpActionResult> Getvulnerability(int vulID)
+        public async Task<IHttpActionResult> GetVulnerability(int id)
         {
-            vulnerability v = await db.vulnerabilities.FindAsync(vulID);
+            vulnerability v = await db.vulnerabilities.FindAsync(id);
 
 
 
